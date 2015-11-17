@@ -9,11 +9,27 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
+    
+    var workspace: NSWorkspace?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        workspace = NSWorkspace.sharedWorkspace()
+        if let runApplications = workspace?.runningApplications {
+            for runApplication in runApplications {
+                print("active:\(runApplication.active)")
+                print("hidden:\(runApplication.hidden)")
+                print("localizedName:\(runApplication.localizedName)")
+                print("processIdentifier:\(runApplication.processIdentifier)")
+                print("bundleIdentifier:\(runApplication.bundleIdentifier)")
+                print("bundleURL:\(runApplication.bundleURL)")
+                print("executableArchitecture:\(runApplication.executableArchitecture)")
+                print("icon:\(runApplication.icon)")
+                print("-------------------------")
+            }
+        }
     }
 
     override var representedObject: AnyObject? {
@@ -21,7 +37,5 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
-
 }
 
